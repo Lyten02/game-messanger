@@ -7,7 +7,12 @@ class Game {
 	var phoneSprite:h2d.Bitmap;
 	var uiContainer:h2d.Object;
 	var answerButtonsContainer:h2d.Object;
-	var redAreaBounds:{x:Float, y:Float, width:Float, height:Float};
+	var redAreaBounds:{
+		x:Float,
+		y:Float,
+		width:Float,
+		height:Float
+	};
 	var messenger:MessengerUI;
 
 	public function new(app:hxd.App) {
@@ -26,8 +31,8 @@ class Game {
 
 		// UI Container для интерфейса чата
 		uiContainer = new h2d.Object(app.s2d);
-
 		// Контейнер для кнопок ответов
+
 		answerButtonsContainer = new h2d.Object(app.s2d);
 
 		// Создаём мессенджер
@@ -36,7 +41,7 @@ class Game {
 		// Инициализируем позицию и масштаб UI
 		var tileW = phoneSprite.tile.width;
 		var tileH = phoneSprite.tile.height;
-		var baseScale = 2.5;
+		var baseScale = 5.0;
 		var maxScale = app.s2d.height / tileH;
 		var scale = Math.min(baseScale, maxScale);
 		updateUIPosition(scale);
@@ -45,7 +50,12 @@ class Game {
 		messenger.startDialog();
 	}
 
-	function findRedArea(tile:h2d.Tile):{x:Float, y:Float, width:Float, height:Float} {
+	function findRedArea(tile:h2d.Tile):{
+		x:Float,
+		y:Float,
+		width:Float,
+		height:Float
+	} {
 		var texture = tile.getTexture();
 		var pixels = texture.capturePixels();
 
@@ -69,10 +79,14 @@ class Game {
 
 				if (isRed) {
 					redCount++;
-					if (x < minX) minX = x;
-					if (y < minY) minY = y;
-					if (x > maxX) maxX = x;
-					if (y > maxY) maxY = y;
+					if (x < minX)
+						minX = x;
+					if (y < minY)
+						minY = y;
+					if (x > maxX)
+						maxX = x;
+					if (y > maxY)
+						maxY = y;
 
 					pixels.setPixel(x, y, 0x00000000);
 				}
@@ -99,7 +113,7 @@ class Game {
 
 		var tileW = phoneSprite.tile.width;
 		var tileH = phoneSprite.tile.height;
-		var baseScale = 2.5;
+		var baseScale = 5.0;
 		var maxScale = app.s2d.height / tileH;
 		var scale = Math.min(baseScale, maxScale);
 
@@ -139,7 +153,7 @@ class Game {
 	function logDebugInfo() {
 		var tileW = phoneSprite.tile.width;
 		var tileH = phoneSprite.tile.height;
-		var baseScale = 2.5;
+		var baseScale = 5.0;
 		var maxScale = app.s2d.height / tileH;
 		var scale = Math.min(baseScale, maxScale);
 
@@ -148,7 +162,15 @@ class Game {
 		log += "Phone tile: " + tileW + "x" + tileH + "\n";
 		log += "Phone scale: " + scale + "\n";
 		log += "Phone pos: " + phoneSprite.x + ", " + phoneSprite.y + "\n";
-		log += "Red area bounds: x=" + redAreaBounds.x + ", y=" + redAreaBounds.y + ", w=" + redAreaBounds.width + ", h=" + redAreaBounds.height + "\n";
+		log += "Red area bounds: x="
+			+ redAreaBounds.x
+			+ ", y="
+			+ redAreaBounds.y
+			+ ", w="
+			+ redAreaBounds.width
+			+ ", h="
+			+ redAreaBounds.height
+			+ "\n";
 		log += "UI container pos: " + uiContainer.x + ", " + uiContainer.y + "\n";
 		log += "UI container scale: " + uiContainer.scaleX + ", " + uiContainer.scaleY + "\n";
 		log += "Messenger container children: " + messenger.container.numChildren + "\n";
@@ -180,3 +202,4 @@ class Game {
 		#end
 	}
 }
+// another test
